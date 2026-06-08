@@ -1,0 +1,85 @@
+{
+  "site": {
+    "name": "Harihar Pharma Distributors",
+    "tagline": "B2B Wholesale Pharmaceutical Distributor",
+    "url": "https://hariharwholesale.example.com",
+    "logo_path": "assets/brand-logo.svg"
+  },
+  "company": {
+    "full_name": "Harihar Pharma Distributors",
+    "registration_name": "Harihar Wholesale Pharmacy",
+    "established": "2018",
+    "business_type": "B2B Pharmaceutical Distribution",
+    "office_address": "Main Commercial Market, Bilaspur, Chhattisgarh 495001, India",
+    "office_coordinates": {
+      "latitude": 22.0821,
+      "longitude": 82.1586
+    }
+  },
+  "contact": {
+    "phone_number": "+91 99812 20777",
+    
+    "whatsapp_number": "919981220777",
+    "whatsapp_full": "+91 9981220777",
+    "email_address": "contact@hariharwholesale.com",
+    "support_email": "support@hariharwholesale.com",
+    "inquiry_email": "inquiry@hariharwholesale.com"
+  },
+  "social": {
+    "whatsapp_link": "https://wa.me/919981220777",
+    "google_maps_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3697.207918876327!2d82.15705987479906!3d22.079875179845672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a280bb54a07433b%3A0xa7d9efa6e635181c!2sHarihar%20Pharmaceutical!5e0!3m2!1sen!2sin!4v1779422289024!5m2!1sen!2sin"
+  },
+  "features": {
+    "live_sheets_enabled": true,
+    "fallback_json_enabled": true,
+    "analytics_enabled": false,
+    "contact_form_enabled": true,
+    "whatsapp_enabled": true
+  },
+  "services": {
+    "categories": [
+      "Tablets",
+      "Capsules",
+      "Syrups",
+      "Injections",
+      "Surgical",
+      "Generic Medicines",
+      "OTC Products"
+    ],
+    "service_areas": [
+      "Bilaspur",
+      "Raipur",
+      "Durg",
+      "Bhilai",
+      "Central India"
+    ]
+  },
+  "seo": {
+    "site_title": "Harihar Pharma Distributors | B2B Wholesale Medicine Supplier in Bilaspur",
+    "site_description": "Premier wholesale pharmaceutical distributor in Bilaspur, Chhattisgarh. Fast stock confirmation via WhatsApp, bulk medicine supply for pharmacies and clinics.",
+    "keywords": "wholesale pharma, bulk medicines, pharmaceutical distributor, Bilaspur drugs, B2B pharmacy, generic medicines"
+  },
+  "spreadsheet": {
+    "google_sheets_csv_url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vR24zpS9ySVvneZbWIt0cV-uLT8eeMFiM0t5rDAhw5EvUMyHQkP-cq_x6NX0thq6uti67mfl84VwZfE/pub?gid=0&single=true&output=csv",
+    "cache_ttl_minutes": 3,
+    "fallback_file": "js/medicines.json"
+  },
+  "emailjs": {
+    "enabled": false,
+    "public_key": "YOUR_EMAILJS_PUBLIC_KEY",
+    "service_id": "YOUR_EMAILJS_SERVICE_ID",
+    "template_id": "YOUR_EMAILJS_TEMPLATE_ID",
+    "user_id": "YOUR_EMAILJS_USER_ID"
+  },
+  "ui": {
+    "loader_brand_text": "Harihar Pharma Distributors",
+    "loader_logo_text": "H",
+    "theme_color": "#0A0F1D",
+    "accent_color": "#059669"
+  },
+  "metadata": {
+    "version": "2.0",
+    "last_updated": "2026-05-22",
+    "status": "production"
+  }
+}

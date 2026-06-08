@@ -1,0 +1,182 @@
+[
+  {
+    "medicineName": "Paracetamol 650mg",
+    "manufacturer": "Micro Labs (Dolo)",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "450+ Packs",
+    "stockStatus": "In Stock",
+    "whatsappCode": "PARA650"
+  },
+  {
+    "medicineName": "Amoxicillin 500mg",
+    "manufacturer": "Alkem Laboratories",
+    "category": "Capsules",
+    "packing": "10 x 10 Capsules Strip",
+    "availability": "300+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "AMOX500"
+  },
+  {
+    "medicineName": "Cetirizine 10mg",
+    "manufacturer": "Cipla Ltd",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "120 Strips",
+    "stockStatus": "Low Stock",
+    "whatsappCode": "CETI10"
+  },
+  {
+    "medicineName": "Pantoprazole 40mg",
+    "manufacturer": "Sun Pharma",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "Restocking",
+    "stockStatus": "Out of Stock",
+    "whatsappCode": "PANTO40"
+  },
+  {
+    "medicineName": "Metformin 500mg",
+    "manufacturer": "Lupin Pharmaceuticals",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "800+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "METF500"
+  },
+  {
+    "medicineName": "Atorvastatin 10mg",
+    "manufacturer": "Ranbaxy Laboratories",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "650+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "ATOR10"
+  },
+  {
+    "medicineName": "Azithromycin 500mg",
+    "manufacturer": "Pfizer India",
+    "category": "Tablets",
+    "packing": "6 Tablets Blister",
+    "availability": "200+ Packs",
+    "stockStatus": "In Stock",
+    "whatsappCode": "AZIT500"
+  },
+  {
+    "medicineName": "Omeprazole 20mg",
+    "manufacturer": "Dr. Reddy's Laboratories",
+    "category": "Capsules",
+    "packing": "10 Capsules Blister",
+    "availability": "450+ Packs",
+    "stockStatus": "In Stock",
+    "whatsappCode": "OMEP20"
+  },
+  {
+    "medicineName": "Loratadine 10mg",
+    "manufacturer": "Cipla Ltd",
+    "category": "Tablets",
+    "packing": "10 Tablets Strip",
+    "availability": "300+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "LORA10"
+  },
+  {
+    "medicineName": "Ibuprofen 400mg",
+    "manufacturer": "Micro Labs",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "900+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "IBUP400"
+  },
+  {
+    "medicineName": "Aspirin 75mg",
+    "manufacturer": "Bayer India",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "600+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "ASPI75"
+  },
+  {
+    "medicineName": "Cough Syrup",
+    "manufacturer": "Robitussin",
+    "category": "Syrups",
+    "packing": "100ml Bottle",
+    "availability": "250+ Bottles",
+    "stockStatus": "In Stock",
+    "whatsappCode": "COUGH100"
+  },
+  {
+    "medicineName": "Antacid Liquid",
+    "manufacturer": "Milk of Magnesia",
+    "category": "Syrups",
+    "packing": "200ml Bottle",
+    "availability": "180+ Bottles",
+    "stockStatus": "In Stock",
+    "whatsappCode": "ANTAC200"
+  },
+  {
+    "medicineName": "Injection Diclofenac 75mg",
+    "manufacturer": "Pfizer India",
+    "category": "Injections",
+    "packing": "5 Ampoules Pack",
+    "availability": "100+ Packs",
+    "stockStatus": "In Stock",
+    "whatsappCode": "DICLO75INJ"
+  },
+  {
+    "medicineName": "Sterile Gauze",
+    "manufacturer": "3M Healthcare",
+    "category": "Surgical",
+    "packing": "Pack of 10",
+    "availability": "500+ Packs",
+    "stockStatus": "In Stock",
+    "whatsappCode": "GAUZE10"
+  },
+  {
+    "medicineName": "Medical Gloves",
+    "manufacturer": "Ansell India",
+    "category": "Surgical",
+    "packing": "Box of 100 Pairs",
+    "availability": "300+ Boxes",
+    "stockStatus": "In Stock",
+    "whatsappCode": "GLOVES100"
+  },
+  {
+    "medicineName": "Vitamin B12 Complex",
+    "manufacturer": "Merck Pharmaceuticals",
+    "category": "Tablets",
+    "packing": "10 x 10 Tablets Strip",
+    "availability": "400+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "VITB12"
+  },
+  {
+    "medicineName": "Multivitamin Syrup",
+    "manufacturer": "Abbott Healthcare",
+    "category": "Syrups",
+    "packing": "200ml Bottle",
+    "availability": "220+ Bottles",
+    "stockStatus": "In Stock",
+    "whatsappCode": "MULTIVIT200"
+  },
+  {
+    "medicineName": "Generic Paracetamol 500mg",
+    "manufacturer": "CIPLA Generics",
+    "category": "Generic Medicines",
+    "packing": "10 x 15 Tablets Strip",
+    "availability": "1200+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "GENPARACET"
+  },
+  {
+    "medicineName": "OTC Antacid Tablet",
+    "manufacturer": "Various Brands",
+    "category": "OTC Products",
+    "packing": "10 Tablets Strip",
+    "availability": "550+ Strips",
+    "stockStatus": "In Stock",
+    "whatsappCode": "OTC_ANTACID"
+  }
+]

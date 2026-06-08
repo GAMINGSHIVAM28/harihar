@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Medicine stock placeholder">
+  <rect width="600" height="400" rx="36" fill="#f4f8f7"/>
+  <rect x="40" y="40" width="520" height="320" rx="28" fill="#fff" stroke="#d9e6e5" stroke-width="8"/>
+  <path d="M160 120h44v160h-44zM196 180h80v18h-80zM196 220h120v18h-120zM196 260h88v18h-88z" fill="#0a4d68" opacity="0.9"/>
+  <rect x="340" y="120" width="120" height="120" rx="16" fill="#1faa59" opacity="0.12" stroke="#1faa59" stroke-width="4"/>
+  <path d="M370 160h40v40h-40zM390 140v80M370 160h40" stroke="#1faa59" stroke-width="16" stroke-linecap="round"/>
+  <text x="300" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" fill="#0a4d68">Harihar Pharma</text>
+</svg>
