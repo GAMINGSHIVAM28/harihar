@@ -61,7 +61,10 @@
   </script>
 </head>
 <body>
-  
+  <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle display theme">
+    <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+    <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+  </button>
   <div id="site-preloader">
     <div class="loader-pulse-ring">
       <svg class="loader-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -103,85 +106,191 @@
 
     <section class="section form-main-section" style="padding-top: 0;">
       <div class="container">
-        <div class="inquiry-form-layout">
+        <div class="inquiry-grid">
           
-          <div class="notice-bar asset-fade">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink: 0;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <p><strong>Need urgent warehouse confirmation?</strong> Utilize the green <strong>"Instant Route via WhatsApp"</strong> option to transmit your itemized list properties to our matching handlers instantly.</p>
+          <!-- Left Column: CTA & Honest Business Badges -->
+          <div class="inquiry-info-column asset-fade">
+            <div class="cta-card">
+              <span class="badge-response-time">
+                <span class="pulse-dot"></span>
+                Typical response within business hours
+              </span>
+              
+              <h2 class="cta-headline">Need Bulk Pharmaceutical Supply?</h2>
+              <p class="cta-subheading">Get verified stock availability, competitive pricing, and fast distributor support from Harihar Pharma.</p>
+              
+              <div class="honest-badges-list">
+                <div class="badge-item">
+                  <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span>Genuine medicine sourcing</span>
+                </div>
+                <div class="badge-item">
+                  <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Bulk order support</span>
+                </div>
+                <div class="badge-item">
+                  <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                  <span>Pharmacy & clinic supply</span>
+                </div>
+                <div class="badge-item">
+                  <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <span>Secure inquiry submission</span>
+                </div>
+              </div>
+              
+              <div class="info-action-buttons">
+                <a href="#" id="info-whatsapp-btn" class="btn btn-primary-whatsapp" onclick="submitFormViaWhatsApp(); return false;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.296 1.489 4.974 1.49 5.425 0 9.832-4.388 9.835-9.78.001-2.614-1.011-5.071-2.852-6.915C16.707 2.105 14.25 1.093 11.64 1.093c-5.43 0-9.84 4.388-9.843 9.782-.002 1.77.466 3.498 1.354 5.03l-.393 1.434 1.483-.389zm13.045-6.735c-.3-.15-1.771-.875-2.046-.975-.276-.1-.476-.15-.676.15-.2.3-.776.976-.95 1.176-.175.2-.35.225-.65.075-.301-.15-1.267-.467-2.414-1.492-.893-.797-1.496-1.783-1.671-2.083-.176-.3-.019-.462.13-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.628-.926-2.227-.242-.584-.49-.505-.676-.514-.175-.009-.376-.01-.576-.01-.2 0-.526.075-.802.375-.276.3-1.052 1.026-1.052 2.502s1.077 2.902 1.227 3.101c.15.2 2.117 3.232 5.129 4.532.716.31 1.275.494 1.712.633.719.228 1.374.196 1.891.119.577-.087 1.771-.725 2.022-1.425.25-.7.25-1.3.175-1.425-.076-.125-.276-.2-.576-.35z"/></svg>
+                  WhatsApp Inquiry
+                </a>
+                <a href="#inquiry-form" class="btn btn-outline" onclick="scrollToForm(event)">
+                  Submit Requirement
+                </a>
+              </div>
+              
+              <div class="urgent-notice-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; color: var(--secondary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <p>For urgent stock confirmation, please contact us directly on WhatsApp.</p>
+              </div>
+            </div>
           </div>
-
-          <div class="panel-box dynamic-form-container asset-fade">
-            <div id="form-alert-slot"></div>
-            
-            <form id="inquiry-form" autocomplete="off">
-              <div class="form-group-grid">
-                <div class="form-group">
-                  <label for="full-name">Your Full Name *</label>
-                  <input type="text" id="full-name" placeholder="e.g. Rahul Sharma">
+          
+          <!-- Right Column: Premium Custom Form Card -->
+          <div class="inquiry-form-column asset-fade">
+            <div class="glass-form-card dynamic-form-container" id="form-container-box">
+              <div id="form-alert-slot"></div>
+              
+              <form id="inquiry-form" autocomplete="off" novalidate>
+                
+                <div class="form-grid-row">
+                  <div class="floating-group">
+                    <input type="text" id="full-name" placeholder=" " required>
+                    <label for="full-name">Full Name *</label>
+                    <span class="error-msg">Full Name is required</span>
+                  </div>
+                  
+                  <div class="floating-group">
+                    <input type="tel" id="mobile-number" placeholder=" " required>
+                    <label for="mobile-number">Mobile Number *</label>
+                    <span class="error-msg">Valid 10-digit mobile number is required</span>
+                  </div>
+                </div>
+                
+                <div class="form-grid-row">
+                  <div class="floating-group">
+                    <input type="text" id="business-name" placeholder=" " required>
+                    <label for="business-name">Pharmacy / Clinic Name *</label>
+                    <span class="error-msg">Pharmacy / Clinic Name is required</span>
+                  </div>
+                  
+                  <div class="floating-group select-group">
+                    <select id="business-type" required>
+                      <option value="" disabled selected hidden></option>
+                      <option value="Retail Pharmacy">Retail Pharmacy</option>
+                      <option value="Wholesale Pharmacy">Wholesale Pharmacy</option>
+                      <option value="Clinic">Clinic</option>
+                      <option value="Hospital">Hospital</option>
+                      <option value="Medical Store">Medical Store</option>
+                      <option value="Distributor">Distributor</option>
+                    </select>
+                    <label for="business-type">Business Type *</label>
+                    <span class="select-arrow"></span>
+                    <span class="error-msg">Please select your Business Type</span>
+                  </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="business-name">Pharmacy / Clinic / Enterprise Name *</label>
-                  <input type="text" id="business-name" placeholder="e.g. Harihar Retail Medicos">
+                <div class="form-grid-row">
+                  <div class="floating-group">
+                    <input type="text" id="city" placeholder=" " required>
+                    <label for="city">City / Region *</label>
+                    <span class="error-msg">City / Region is required</span>
+                  </div>
+                  
+                  <div class="floating-group">
+                    <input type="email" id="email-address" placeholder=" ">
+                    <label for="email-address">Email Address (Optional)</label>
+                    <span class="error-msg">Please enter a valid email address</span>
+                  </div>
                 </div>
-              </div>
-
-              <div class="form-group-grid">
-                <div class="form-group">
-                  <label for="mobile-number">Mobile / Contact Number (WhatsApp Line) *</label>
-                  <input type="tel" id="mobile-number" placeholder="10-digit smartphone line">
+                
+                <div class="form-grid-row">
+                  <div class="floating-group select-group">
+                    <select id="requirement-type" required>
+                      <option value="" disabled selected hidden></option>
+                      <option value="Bulk Medicine Order">Bulk Medicine Order</option>
+                      <option value="Stock Availability">Stock Availability</option>
+                      <option value="Dealer Partnership">Dealer Partnership</option>
+                      <option value="General Inquiry">General Inquiry</option>
+                    </select>
+                    <label for="requirement-type">Requirement Type *</label>
+                    <span class="select-arrow"></span>
+                    <span class="error-msg">Please select a requirement type</span>
+                  </div>
+                  
+                  <div class="floating-group select-group">
+                    <select id="estimated-quantity" required>
+                      <option value="" disabled selected hidden></option>
+                      <option value="Less than 100 units">Less than 100 units</option>
+                      <option value="100–500 units">100–500 units</option>
+                      <option value="500–1000 units">500–1000 units</option>
+                      <option value="1000+ units">1000+ units</option>
+                    </select>
+                    <label for="estimated-quantity">Estimated Quantity Requirement *</label>
+                    <span class="select-arrow"></span>
+                    <span class="error-msg">Please select estimated quantity</span>
+                  </div>
+                </div>
+                
+                <div class="floating-group select-group">
+                  <select id="preferred-contact" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Phone Call">Phone Call</option>
+                    <option value="Email">Email</option>
+                  </select>
+                  <label for="preferred-contact">Preferred Contact Method *</label>
+                  <span class="select-arrow"></span>
+                  <span class="error-msg">Please select preferred contact method</span>
+                </div>
+                
+                <div class="floating-group textarea-group">
+                  <textarea id="message" placeholder=" " rows="4" required></textarea>
+                  <label for="message">Your Message / Medicine Requirements *</label>
+                  <span class="error-msg">Please enter your message or requirements</span>
                 </div>
 
-                <div class="form-group">
-                  <label for="city">City / Region Location *</label>
-                  <input type="text" id="city" placeholder="e.g. Bilaspur">
+                <div class="floating-group textarea-group">
+                  <textarea id="additional-notes" placeholder=" " rows="3"></textarea>
+                  <label for="additional-notes">Additional Notes (Optional)</label>
                 </div>
-              </div>
-
-              <div class="form-group">
-                <label for="required-medicines">Required Molecules / Medicine Configurations *</label>
-                <textarea id="required-medicines" rows="4" placeholder="Specify itemized brand names, generic formulas, or compound strengths (e.g., Dolo 650mg - 50 Boxes, Amoxicillin 500mg - 20 Strips)"></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="quantity">Target Packaging Volume / Bulk Metrics *</label>
-                <input type="text" id="quantity" placeholder="e.g., 50 Wholesale Cartons, 200 Case Strips">
-              </div>
-
-              <div class="form-group">
-                <label for="message">Logistics Requirements or Special Instructions (Optional)</label>
-                <textarea id="message" rows="3" placeholder="Specify cool-chain climate options, secure transport parameters, credit tiering models, etc."></textarea>
-              </div>
-
-              <div class="form-actions-cluster">
-                <button type="submit" id="submit-email-btn" class="btn btn-secondary btn-block">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                  Submit to Corporate Inbox
+                
+                <button type="submit" id="submit-btn" class="btn btn-secondary btn-block">
+                  <span class="btn-content">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon-svg" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <span class="btn-text-slot">Submit Secure Requirement</span>
+                  </span>
+                  <span class="btn-spinner hidden"></span>
                 </button>
                 
                 <button type="button" class="btn btn-primary-whatsapp btn-block" onclick="submitFormViaWhatsApp()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.296 1.489 4.974 1.49 5.425 0 9.832-4.388 9.835-9.78.001-2.614-1.011-5.071-2.852-6.915C16.707 2.105 14.25 1.093 11.64 1.093c-5.43 0-9.84 4.388-9.843 9.782-.002 1.77.466 3.498 1.354 5.03l-.393 1.434 1.483-.389zm13.045-6.735c-.3-.15-1.771-.875-2.046-.975-.276-.1-.476-.15-.676.15-.2.3-.776.976-.95 1.176-.175.2-.35.225-.65.075-.301-.15-1.267-.467-2.414-1.492-.893-.797-1.496-1.783-1.671-2.083-.176-.3-.019-.462.13-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.628-.926-2.227-.242-.584-.49-.505-.676-.514-.175-.009-.376-.01-.576-.01-.2 0-.526.075-.802.375-.276.3-1.052 1.026-1.052 2.502s1.077 2.902 1.227 3.101c.15.2 2.117 3.232 5.129 4.532.716.31 1.275.494 1.712.633.719.228 1.374.196 1.891.119.577-.087 1.771-.725 2.022-1.425.25-.7.25-1.3.175-1.425-.076-.125-.276-.2-.576-.35z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.296 1.489 4.974 1.49 5.425 0 9.832-4.388 9.835-9.78.001-2.614-1.011-5.071-2.852-6.915C16.707 2.105 14.25 1.093 11.64 1.093c-5.43 0-9.84 4.388-9.843 9.782-.002 1.77.466 3.498 1.354 5.03l-.393 1.434 1.483-.389zm13.045-6.735c-.3-.15-1.771-.875-2.046-.975-.276-.1-.476-.15-.676.15-.2.3-.776.976-.95 1.176-.175.2-.35.225-.65.075-.301-.15-1.267-.467-2.414-1.492-.893-.797-1.496-1.783-1.671-2.083-.176-.3-.019-.462.13-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.628-.926-2.227-.242-.584-.49-.505-.676-.514-.175-.009-.376-.01-.576-.01-.2 0-.526.075-.802.375-.276.3-1.052 1.026-1.052 2.502s1.077 2.902 1.227 3.101c.15.2 2.117 3.232 5.129 4.532.716.31 1.275.494 1.712.633.719.228 1.374.196 1.891.119.577-.087 1.771-.725 2.022-1.425.25-.7.25-1.3.175-1.425-.076-.125-.276-.2-.576-.35z"/></svg>
                   Instant Route via WhatsApp
                 </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="panel-box contact-fallback-block asset-fade">
-            <h3>Alternative Desk Coordinates</h3>
-            <p>Connect with our corporate distribution channels directly for priority ordering, unlisted therapeutic lines, or logistics status evaluations.</p>
-            <div class="fallback-links">
-              <p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #25D366; vertical-align: middle; margin-right: 4px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.296 1.489 4.974 1.49 5.425 0 9.832-4.388 9.835-9.78.001-2.614-1.011-5.071-2.852-6.915C16.707 2.105 14.25 1.093 11.64 1.093c-5.43 0-9.84 4.388-9.843 9.782-.002 1.77.466 3.498 1.354 5.03l-.393 1.434 1.483-.389zm13.045-6.735c-.3-.15-1.771-.875-2.046-.975-.276-.1-.476-.15-.676.15-.2.3-.776.976-.95 1.176-.175.2-.35.225-.65.075-.301-.15-1.267-.467-2.414-1.492-.893-.797-1.496-1.783-1.671-2.083-.176-.3-.019-.462.13-.611.135-.134.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.628-.926-2.227-.242-.584-.49-.505-.676-.514-.175-.009-.376-.01-.576-.01-.2 0-.526.075-.802.375-.276.3-1.052 1.026-1.052 2.502s1.077 2.902 1.227 3.101c.15.2 2.117 3.232 5.129 4.532.716.31 1.275.494 1.712.633.719.228 1.374.196 1.891.119.577-.087 1.771-.725 2.022-1.425.25-.7.25-1.3.175-1.425-.076-.125-.276-.2-.576-.35z"/></svg>
-                <strong>WhatsApp:</strong> <a href="#" id="cfg-wa-link" class="wa-highlight" target="_blank">Syncing Line...</a>
-              </p>
-              <p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--secondary-blue); vertical-align: middle; margin-right: 4px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <strong>Direct Call:</strong> <a href="#" id="cfg-phone-link" class="phone-highlight">Syncing Line...</a>
-              </p>
+              </form>
             </div>
           </div>
-
+          
         </div>
       </div>
     </section>

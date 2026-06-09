@@ -71,6 +71,22 @@
     "template_id": "YOUR_EMAILJS_TEMPLATE_ID",
     "user_id": "YOUR_EMAILJS_USER_ID"
   },
+  "lead_capture": {
+    "google_form_action_url": "https://docs.google.com/forms/d/e/1FAIpQLSc-8k-iD2YYlbBoqLQ47mmaqX29aH2ElPwvNiAWrC870DSZtA/formResponse",
+    "fields": {
+      "full_name": "entry.1519084169",
+      "mobile_number": "entry.1100138901",
+      "email_address": "entry.1911450082",
+      "business_type": "entry.1453753986",
+      "business_name": "entry.272072734",
+      "city": "entry.2032529719",
+      "requirement_type": "entry.516998880",
+      "message": "entry.1475721153",
+      "estimated_quantity": "entry.1313062522",
+      "additional_notes": "entry.1006974028",
+      "preferred_contact": "entry.702876078"
+    }
+  },
   "ui": {
     "loader_brand_text": "Harihar Pharma Distributors",
     "loader_logo_text": "H",

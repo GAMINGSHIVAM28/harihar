@@ -110,26 +110,45 @@ function initMobileMenu() {
 
   if (!hamburger || !navLinks) return;
 
-  // Toggle menu
-  hamburger.addEventListener('click', () => {
+  // Dynamically inject mobile nav backdrop overlay if not present
+  let overlay = document.querySelector('.nav-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  function toggleMenu() {
     navLinks.classList.toggle('nav-active');
     hamburger.classList.toggle('toggle-burger');
-  });
+    overlay.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  }
+
+  // Toggle menu
+  hamburger.addEventListener('click', toggleMenu);
+
+  // Close menu when overlay clicked
+  overlay.addEventListener('click', toggleMenu);
 
   // Close menu when link clicked
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('nav-active');
       hamburger.classList.remove('toggle-burger');
+      overlay.classList.remove('active');
+      document.body.classList.remove('menu-open');
     });
   });
 
-  // Close menu when clicking outside
+  // Close menu when clicking outside (other than hamburger/links/overlay)
   document.addEventListener('click', (event) => {
-    const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target);
+    const isClickInside = navLinks.contains(event.target) || hamburger.contains(event.target) || overlay.contains(event.target);
     if (!isClickInside && navLinks.classList.contains('nav-active')) {
       navLinks.classList.remove('nav-active');
       hamburger.classList.remove('toggle-burger');
+      overlay.classList.remove('active');
+      document.body.classList.remove('menu-open');
     }
   });
 }
@@ -634,52 +653,147 @@ function initFormSubmission() {
   const form = document.getElementById('inquiry-form');
   if (!form) return;
 
-  form.addEventListener('submit', function (e) {
+  const inputs = form.querySelectorAll('input, select, textarea');
+  
+  // Floating label handlers
+  inputs.forEach(input => {
+    const group = input.closest('.floating-group');
+    if (!group) return;
+
+    // Detect browser autofill and initial state values
+    const checkValue = () => {
+      if (input.value && input.value.trim() !== '') {
+        group.classList.add('has-value');
+      } else {
+        group.classList.remove('has-value');
+      }
+    };
+
+    // Check multiple times early on to capture slow browser autofills
+    [50, 150, 300, 600, 1000].forEach(delay => {
+      setTimeout(checkValue, delay);
+    });
+
+    input.addEventListener('focus', () => {
+      group.classList.add('is-focused');
+      group.classList.remove('has-error');
+    });
+
+    input.addEventListener('blur', () => {
+      group.classList.remove('is-focused');
+      checkValue();
+    });
+
+    input.addEventListener('input', () => {
+      group.classList.remove('has-error');
+      checkValue();
+    });
+
+    input.addEventListener('change', () => {
+      group.classList.remove('has-error');
+      checkValue();
+    });
+  });
+
+  // Handle select elements value state changes
+  const selects = form.querySelectorAll('select');
+  selects.forEach(select => {
+    const group = select.closest('.floating-group');
+    if (!group) return;
+    
+    select.addEventListener('change', () => {
+      if (select.value) {
+        group.classList.add('has-value');
+      } else {
+        group.classList.remove('has-value');
+      }
+    });
+  });
+
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     if (!validateInquiryForm()) return;
 
-    const submitBtn = document.getElementById('submit-email-btn') || form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const submitBtn = document.getElementById('submit-btn');
+    const btnContent = submitBtn.querySelector('.btn-content');
+    const btnSpinner = submitBtn.querySelector('.btn-spinner');
     
+    // Disable inputs
+    inputs.forEach(el => el.disabled = true);
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
+    
+    // Show spinner
+    if (btnContent) btnContent.classList.add('hidden-opacity');
+    if (btnSpinner) btnSpinner.classList.remove('hidden');
 
-    const formData = {
-      from_name: document.getElementById('full-name')?.value.trim() || '',
-      business_name: document.getElementById('business-name')?.value.trim() || '',
-      mobile_number: document.getElementById('mobile-number')?.value.trim() || '',
-      city_location: document.getElementById('city')?.value.trim() || '',
-      required_medicines: document.getElementById('required-medicines')?.value.trim() || '',
-      bulk_quantity: document.getElementById('quantity')?.value.trim() || '',
-      additional_message: document.getElementById('message')?.value.trim() || ''
-    };
+    const fullName = document.getElementById('full-name')?.value.trim() || '';
+    const mobileNumber = document.getElementById('mobile-number')?.value.trim() || '';
+    const emailAddress = document.getElementById('email-address')?.value.trim() || '';
+    const businessName = document.getElementById('business-name')?.value.trim() || '';
+    const businessType = document.getElementById('business-type')?.value.trim() || '';
+    const city = document.getElementById('city')?.value.trim() || '';
+    const requirementType = document.getElementById('requirement-type')?.value.trim() || '';
+    const estimatedQuantity = document.getElementById('estimated-quantity')?.value.trim() || '';
+    const preferredContact = document.getElementById('preferred-contact')?.value.trim() || '';
+    const messageText = document.getElementById('message')?.value.trim() || '';
+    const additionalNotes = document.getElementById('additional-notes')?.value.trim() || '';
 
-    if (globalConfig?.emailjs?.enabled && globalConfig?.emailjs?.service_id && typeof emailjs !== 'undefined') {
-      emailjs.send(
-        globalConfig.emailjs.service_id,
-        globalConfig.emailjs.template_id,
-        formData
-      )
-      .then(() => {
-        showFormAlert('✓ Inquiry submitted successfully! Our team will respond within 2 hours.', '#2E7D32', '#E8F5E9');
-        form.reset();
-      })
-      .catch((err) => {
-        console.error('Form submission error:', err);
-        showFormAlert('⚠️ Unable to submit via email. Please use WhatsApp below.', '#C62828', '#FFEBEE');
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      });
-    } else {
+    const actionUrl = globalConfig?.lead_capture?.google_form_action_url || '';
+    const fields = globalConfig?.lead_capture?.fields || {};
+    
+    const isMock = !actionUrl || 
+                   actionUrl.includes('YOUR_GOOGLE_FORM_RESPONSE_URL_HERE') || 
+                   actionUrl.includes('example.com') ||
+                   !fields.full_name ||
+                   fields.full_name.includes('entry.XXXXXX');
+
+    if (isMock) {
+      // Mock simulation mode with 1.2s delay for testing
+      console.log('Harihar Lead Capture: Simulation submission mode activated.');
       setTimeout(() => {
-        showFormAlert('✓ Inquiry received! Please check our WhatsApp within 2 hours.', '#2E7D32', '#E8F5E9');
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        showFormSuccess();
       }, 1200);
+    } else {
+      // Send real POST request to Google Forms in the background
+      try {
+        const formData = new URLSearchParams();
+        formData.append(fields.full_name, fullName);
+        formData.append(fields.mobile_number, mobileNumber);
+        
+        if (fields.email_address) formData.append(fields.email_address, emailAddress);
+        if (fields.business_type) formData.append(fields.business_type, businessType);
+        
+        formData.append(fields.business_name, businessName);
+        formData.append(fields.city, city);
+        formData.append(fields.requirement_type, requirementType);
+        formData.append(fields.message, messageText);
+        
+        if (fields.estimated_quantity) formData.append(fields.estimated_quantity, estimatedQuantity);
+        if (fields.additional_notes) formData.append(fields.additional_notes, additionalNotes);
+        if (fields.preferred_contact) formData.append(fields.preferred_contact, preferredContact);
+
+        await fetch(actionUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData
+        });
+        
+        // Under no-cors the response is opaque, resolve promise as success
+        showFormSuccess();
+      } catch (err) {
+        console.error('Google Forms submission error:', err);
+        showFormAlert('⚠️ Network connection issue. For urgent requests, please route via WhatsApp below.', '#c8344b', 'rgba(200, 52, 75, 0.08)');
+        
+        // Re-enable inputs
+        inputs.forEach(el => el.disabled = false);
+        submitBtn.disabled = false;
+        if (btnContent) btnContent.classList.remove('hidden-opacity');
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+      }
     }
   });
 }
@@ -690,26 +804,41 @@ function validateInquiryForm() {
 
   const requiredFields = [
     { id: 'full-name', label: 'Full Name' },
-    { id: 'business-name', label: 'Business Name' },
     { id: 'mobile-number', label: 'Mobile Number' },
+    { id: 'business-name', label: 'Pharmacy / Clinic Name' },
+    { id: 'business-type', label: 'Business Type' },
     { id: 'city', label: 'City' },
-    { id: 'required-medicines', label: 'Required Medicines' },
-    { id: 'quantity', label: 'Quantity' }
+    { id: 'requirement-type', label: 'Requirement Type' },
+    { id: 'estimated-quantity', label: 'Estimated Quantity' },
+    { id: 'preferred-contact', label: 'Preferred Contact Method' },
+    { id: 'message', label: 'Message' }
   ];
 
   requiredFields.forEach(({ id, label }) => {
     const field = document.getElementById(id);
-    if (!field || !field.value.trim()) {
+    if (!field) return;
+    
+    const val = field.value.trim();
+    if (!val) {
       showFieldError(id, `${label} is required`);
       isValid = false;
     }
   });
 
   const phoneField = document.getElementById('mobile-number');
-  if (phoneField && isValid) {
+  if (phoneField && phoneField.value.trim() && isValid) {
     const cleanNum = phoneField.value.replace(/[^0-9]/g, '');
     if (cleanNum.length !== 10) {
-      showFieldError('mobile-number', 'Please enter a valid 10-digit Indian mobile number');
+      showFieldError('mobile-number', 'Please enter a valid 10-digit mobile number');
+      isValid = false;
+    }
+  }
+
+  const emailField = document.getElementById('email-address');
+  if (emailField && emailField.value.trim() !== '') {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailField.value.trim())) {
+      showFieldError('email-address', 'Please enter a valid email address');
       isValid = false;
     }
   }
@@ -721,19 +850,19 @@ function showFieldError(fieldId, message) {
   const field = document.getElementById(fieldId);
   if (!field) return;
   
-  const errorDiv = document.createElement('div');
-  errorDiv.className = 'field-error';
-  errorDiv.style.cssText = 'color: #C62828; font-size: 0.8rem; margin-top: 4px; font-weight: 500;';
-  errorDiv.textContent = message;
-  
-  field.parentElement.appendChild(errorDiv);
-  field.style.borderColor = '#C62828';
+  const group = field.closest('.floating-group');
+  if (group) {
+    group.classList.add('has-error');
+    const errorSpan = group.querySelector('.error-msg');
+    if (errorSpan) {
+      errorSpan.textContent = message;
+    }
+  }
 }
 
 function clearFormErrors() {
-  document.querySelectorAll('.field-error').forEach(err => err.remove());
-  document.querySelectorAll('input, textarea, select').forEach(field => {
-    field.style.borderColor = '';
+  document.querySelectorAll('.floating-group').forEach(group => {
+    group.classList.remove('has-error');
   });
 }
 
@@ -745,11 +874,11 @@ function showFormAlert(message, textColor, bgColor) {
     alertDiv.style.cssText = `
       background-color: ${bgColor};
       color: ${textColor};
-      padding: 18px 24px;
-      border-radius: 8px;
+      padding: 16px 20px;
+      border-radius: var(--r-sm);
       font-weight: 600;
-      margin-bottom: 24px;
-      font-size: 0.95rem;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
       border-left: 4px solid ${textColor};
     `;
     alertDiv.textContent = message;
@@ -758,6 +887,50 @@ function showFormAlert(message, textColor, bgColor) {
     slot.appendChild(alertDiv);
     
     slot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function showFormSuccess() {
+  const container = document.getElementById('form-container-box');
+  if (!container) return;
+
+  container.style.opacity = '0';
+  container.style.transform = 'translateY(12px)';
+  container.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+
+  setTimeout(() => {
+    container.innerHTML = `
+      <div class="success-card text-center">
+        <div class="success-checkmark-wrapper">
+          <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 class="success-title">Submission Received</h3>
+        <p class="success-message">Thank you. Your inquiry has been submitted. Our team will contact you shortly.</p>
+        <button type="button" class="btn btn-outline" style="margin-top: 15px; width: 100%; min-height: 50px;" onclick="resetFormState()">Send Another Inquiry</button>
+      </div>
+    `;
+    
+    container.style.opacity = '1';
+    container.style.transform = 'translateY(0)';
+  }, 350);
+}
+
+function resetFormState() {
+  window.location.reload();
+}
+
+function scrollToForm(e) {
+  if (e) e.preventDefault();
+  const form = document.getElementById('inquiry-form');
+  if (form) {
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const firstInput = document.getElementById('full-name');
+    if (firstInput) {
+      setTimeout(() => firstInput.focus(), 650);
+    }
   }
 }
 
@@ -791,24 +964,37 @@ Thank you!`;
 }
 
 function submitFormViaWhatsApp() {
-  if (!validateInquiryForm()) return;
-  
+  const valFullName = document.getElementById('full-name')?.value.trim() || '';
+  const valBusinessName = document.getElementById('business-name')?.value.trim() || '';
+  const valBusinessType = document.getElementById('business-type')?.value.trim() || 'N/A';
+  const valMobileNumber = document.getElementById('mobile-number')?.value.trim() || '';
+  const valEmailAddress = document.getElementById('email-address')?.value.trim() || 'N/A';
+  const valCity = document.getElementById('city')?.value.trim() || '';
+  const valReqType = document.getElementById('requirement-type')?.value.trim() || 'General Inquiry';
+  const valEstQty = document.getElementById('estimated-quantity')?.value.trim() || 'N/A';
+  const valPrefContact = document.getElementById('preferred-contact')?.value.trim() || 'WhatsApp';
+  const valMessage = document.getElementById('message')?.value.trim() || '';
+  const valAddNotes = document.getElementById('additional-notes')?.value.trim() || 'None';
+
   const waNum = normalizeWhatsAppNumber(globalConfig?.contact?.whatsapp_number);
-  const getFieldValue = (id) => document.getElementById(id)?.value.trim() || '';
   
   const message = `Hello Harihar Wholesale Pharmacy,
 
 B2B Procurement Request:
 
-Contact: ${escapeHtml(getFieldValue('full-name'))}
-Business: ${escapeHtml(getFieldValue('business-name'))}
-Phone: ${escapeHtml(getFieldValue('mobile-number'))}
-Location: ${escapeHtml(getFieldValue('city'))}
+Contact: ${escapeHtml(valFullName)}
+Business: ${escapeHtml(valBusinessName)} (${escapeHtml(valBusinessType)})
+Phone: ${escapeHtml(valMobileNumber)}
+Email: ${escapeHtml(valEmailAddress)}
+Location: ${escapeHtml(valCity)}
 
-Required Medicines: ${escapeHtml(getFieldValue('required-medicines'))}
-Quantity: ${escapeHtml(getFieldValue('quantity'))}
+Requirement Type: ${escapeHtml(valReqType)}
+Estimated Quantity: ${escapeHtml(valEstQty)}
+Preferred Contact: ${escapeHtml(valPrefContact)}
 
-Additional Details: ${escapeHtml(getFieldValue('message'))}
+Medicine details: ${escapeHtml(valMessage)}
+
+Additional Notes: ${escapeHtml(valAddNotes)}
 
 Please respond with billing estimates and availability.`;
 
